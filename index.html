@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>PhlapphlaChai 3D GeoAI Dashboard v17</title>
+<title>PhlapphlaChai 3D GeoAI Dashboard v17.0.1</title>
 <base target="_top">
 
 <!-- ═══════════════════════════════════════════════════════════════════
@@ -779,10 +779,10 @@ body[data-amb="night"]     #ambientOverlay{background:linear-gradient(180deg,rgb
 <script>
 window.APP_CONFIG = {
   SHEET_ID: '172EXyjhgiSu_skHhrs_hxrqZAJeg688WPpACMDHueYY',
-  WEB_APP_URL: 'https://script.google.com/macros/s/AKfycbxLmSr5ou083xdPwQAGXBM63zeL476ha7D43S6aaz5zw3jbd_SsAmHtvt_ct4kb9bWefQ/exec',
-  CENTER: { lat: 14.511111, lng: 99.880409 },
+  WEB_APP_URL: 'https://script.google.com/macros/s/AKfycbwigKNOGhcp9wy8m1_zs3PijyQy_OIphmcNh7VFaMzqzrcC4EoQoFusSzOJ7jdSsAIJ/exec',
+  CENTER: { lat: 14.36025, lng: 99.83510 },
   ZOOM: 14,
-  VERSION: '17.0.0'
+  VERSION: '17.0.1'
 };
 </script>
 
@@ -860,7 +860,7 @@ window.APP_CONFIG = {
 
 <script>
 /* ═══════════════════════════════════════════════════════════════════════
-   PHLAPPLHACHAI 3D GeoAI DASHBOARD v17 — FRONTEND
+   PHLAPPLHACHAI 3D GeoAI DASHBOARD v17.0.1 — FRONTEND
    ═══════════════════════════════════════════════════════════════════════ */
 (function(){
 'use strict';
@@ -1270,7 +1270,7 @@ function normalize(payload){
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   LAYER DEFINITIONS (with Phase 17 hasGallery/hasPDF)
+   LAYER DEFINITIONS (with hasGallery/hasPDF)
    ═══════════════════════════════════════════════════════════════════════ */
 const LAYER_DEFS = [
   { key:'Households',  label:'ครัวเรือน',          icon:'🏠', color:'#38bdf8', group:'people', hasGallery:true },
@@ -1301,7 +1301,7 @@ const GROUP_DEFS = [
 const IOT_ICON = { WaterLevel:'🌊', PM25:'🌫️', SmartPole:'💡', CCTV:'📹', Weather:'🌦️', Soil:'🌱', Rain:'🌧️' };
 
 /* ═══════════════════════════════════════════════════════════════════════
-   PHASE 17 — Category Definitions
+   Category Definitions (Phase 17)
    ═══════════════════════════════════════════════════════════════════════ */
 const LANDMARK_CATEGORIES = {
   'หน่วยงานราชการ': [
@@ -1433,16 +1433,43 @@ function getCategoryLabel(layerKey, item, catValue){
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   BASEMAPS
+   BASEMAPS — with maxNativeZoom ✅
    ═══════════════════════════════════════════════════════════════════════ */
 const BASEMAPS = {
-  'carto-dark':   { name:'Carto Dark',    icon:'🌙', url:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', subs:'abcd', category:'default', desc:'แผนที่มืด' },
-  'carto-voyager':{ name:'Carto Voyager', icon:'🗺️', url:'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', subs:'abcd', category:'default', desc:'แผนที่สว่าง' },
-  'google-sat':   { name:'Google Sat',    icon:'🛰️', url:'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', subs:'', category:'satellite', desc:'ภาพถ่าย' },
-  'google-hybrid':{ name:'Google Hybrid', icon:'🌏', url:'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', subs:'', category:'satellite', desc:'ภาพ + ถนน' },
-  'esri-imagery': { name:'Esri Imagery',  icon:'🛰️', url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', subs:'', category:'satellite', desc:'Esri Sat' },
-  'osm-hot':      { name:'OSM HOT',       icon:'🚑', url:'https://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png', subs:'abc', category:'disaster', desc:'ภัยพิบัติ' },
-  'opentopo':     { name:'OpenTopo',      icon:'🏔️', url:'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', subs:'abc', category:'topo', desc:'ภูมิประเทศ' }
+  'carto-dark':   { name:'Carto Dark',    icon:'🌙',
+    url:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+    subs:'abcd', category:'default', desc:'แผนที่มืด',
+    maxNativeZoom: 20 },
+
+  'carto-voyager':{ name:'Carto Voyager', icon:'🗺️',
+    url:'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+    subs:'abcd', category:'default', desc:'แผนที่สว่าง',
+    maxNativeZoom: 20 },
+
+  'google-sat':   { name:'Google Sat',    icon:'🛰️',
+    url:'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
+    subs:'', category:'satellite', desc:'ภาพถ่าย',
+    maxNativeZoom: 21 },
+
+  'google-hybrid':{ name:'Google Hybrid', icon:'🌏',
+    url:'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',
+    subs:'', category:'satellite', desc:'ภาพ + ถนน',
+    maxNativeZoom: 21 },
+
+  'esri-imagery': { name:'Esri Imagery',  icon:'🛰️',
+    url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    subs:'', category:'satellite', desc:'Esri Sat',
+    maxNativeZoom: 19 },
+
+  'osm-hot':      { name:'OSM HOT',       icon:'🚑',
+    url:'https://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+    subs:'abc', category:'disaster', desc:'ภัยพิบัติ',
+    maxNativeZoom: 19 },
+
+  'opentopo':     { name:'OpenTopo',      icon:'🏔️',
+    url:'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+    subs:'abc', category:'topo', desc:'ภูมิประเทศ',
+    maxNativeZoom: 17 }
 };
 const BM_CATS = {
   default:{ name:'Default', icon:'📌', order:1 },
@@ -1457,7 +1484,14 @@ function setBasemap(id){
   if(!bm) return;
   S.map.eachLayer(l => { if(l._isBasemap) l.setOpacity(0); });
   if(bm.url){
-    const newLayer = L.tileLayer(bm.url, { maxZoom: 19, subdomains: bm.subs || '' });
+    const newLayer = L.tileLayer(bm.url, {
+      minZoom: 3,
+      maxZoom: 19,
+      maxNativeZoom: bm.maxNativeZoom || 19,
+      subdomains: bm.subs || '',
+      crossOrigin: true,
+      errorTileUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2Ij48cmVjdCB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgZmlsbD0iIzBlMTYyOCIvPjwvc3ZnPg=='
+    });
     newLayer._isBasemap = true;
     newLayer._basemapId = id;
     newLayer.setOpacity(0);
@@ -1544,12 +1578,16 @@ function openBasemapModal(){
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   MAP INIT + MARKERS
+   MAP INIT — with maxZoom ✅
    ═══════════════════════════════════════════════════════════════════════ */
 function initMap(){
   S.map = L.map('map', {
-    zoomControl: false, preferCanvas: false,
-    zoomSnap: 0.5, wheelPxPerZoomLevel: 110
+    zoomControl: false,
+    preferCanvas: false,
+    zoomSnap: 0.5,
+    wheelPxPerZoomLevel: 110,
+    minZoom: 3,
+    maxZoom: 19
   }).setView([CFG.CENTER.lat, CFG.CENTER.lng], CFG.ZOOM);
   L.control.zoom({ position: 'bottomright' }).addTo(S.map);
   S.map.on('click', hideCard);
@@ -1601,7 +1639,6 @@ function buildMarkerLayer(def, items){
       title: item.name || '', riseOnHover: true,
       zIndexOffset: def.key === 'Emergency' ? 600 : def.key === 'SpecialNeeds' ? 500 : def.key === 'Bedridden' ? 400 : 0
     });
-    /* Phase 17 — Tooltip ใส่ houseNumber */
     const hnTip = (def.key === 'Households' && item.houseNumber && item.houseNumber !== '—')
       ? `<br><span style="color:#7dd3fc;font-size:10px;font-weight:600">🏠 ${esc(item.houseNumber)}</span>`
       : '';
@@ -1938,13 +1975,12 @@ function renderHouseholdTabs(item){
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   PHASE 17 — Generic Gallery Tabs (Landmarks/LocalShops/Edu/Medical)
+   PHASE 17 — Generic Gallery Tabs
    ═══════════════════════════════════════════════════════════════════════ */
 function renderGalleryTabs(def, item){
   const fields = cardFields(def.key, item).filter(f => f[1] != null && f[1] !== '');
   const photos = parseJSONField(item.photos, []);
 
-  /* ── Readiness Score (เฉพาะ EducationalSites) ── */
   const readinessHTML = def.key === 'EducationalSites'
     ? (() => {
         const wanted = ['building','classroom','facility','signage'];
@@ -1975,7 +2011,6 @@ function renderGalleryTabs(def, item){
       })()
     : '';
 
-  /* ── Capacity Verification (เฉพาะ MedicalUnits) ── */
   const capacityHTML = def.key === 'MedicalUnits'
     ? (() => {
         const have = new Set(photos.map(p => p.category));
@@ -2082,7 +2117,7 @@ function renderGalleryTabs(def, item){
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   CARD FIELDS (per layer)
+   CARD FIELDS
    ═══════════════════════════════════════════════════════════════════════ */
 function cardFields(key, r){
   const map = {
@@ -2297,7 +2332,6 @@ function showCard(def, item, latlng){
     if(hasGallery && !isHousehold) setTimeout(() => initMiniMapGeneric(item), 200);
   });
 
-  /* ── Tabs (shared for Households + Gallery) ── */
   if(isHousehold || hasGallery){
     host.querySelectorAll('.card-tab').forEach(tab => {
       tab.addEventListener('click', ev => {
@@ -2312,7 +2346,6 @@ function showCard(def, item, latlng){
     });
   }
 
-  /* ── Gallery interactions ── */
   if(isHousehold || hasGallery){
     const photos = parseJSONField(item.photos, []);
     host.querySelectorAll('.gallery-item').forEach((el, idx) => {
@@ -2411,7 +2444,7 @@ function positionCard(latlng){
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   MINI MAPS
+   MINI MAPS — with maxZoom ✅
    ═══════════════════════════════════════════════════════════════════════ */
 function initHouseholdMiniMap(item){
   const el = document.getElementById(`householdMiniMap-${item.id}`);
@@ -2423,10 +2456,11 @@ function initHouseholdMiniMap(item){
     const miniMap = L.map(el, {
       zoomControl: false, attributionControl: false,
       dragging: false, scrollWheelZoom: false,
-      doubleClickZoom: false, boxZoom: false, keyboard: false, tap: false
+      doubleClickZoom: false, boxZoom: false, keyboard: false, tap: false,
+      minZoom: 10, maxZoom: 19
     }).setView([lat, lng], 15);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      maxZoom: 19, subdomains: 'abcd'
+      maxZoom: 19, maxNativeZoom: 20, subdomains: 'abcd'
     }).addTo(miniMap);
     L.circleMarker([lat, lng], {
       radius: 8, color: '#00f0ff', fillColor: '#00f0ff',
@@ -2453,10 +2487,11 @@ function initMiniMapGeneric(item){
     const miniMap = L.map(el, {
       zoomControl: false, attributionControl: false,
       dragging: false, scrollWheelZoom: false,
-      doubleClickZoom: false, boxZoom: false, keyboard: false, tap: false
+      doubleClickZoom: false, boxZoom: false, keyboard: false, tap: false,
+      minZoom: 10, maxZoom: 19
     }).setView([lat, lng], 16);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      maxZoom: 19, subdomains: 'abcd'
+      maxZoom: 19, maxNativeZoom: 20, subdomains: 'abcd'
     }).addTo(miniMap);
     L.circleMarker([lat, lng], {
       radius: 8, color: '#eab308', fillColor: '#eab308',
@@ -2506,7 +2541,7 @@ function openLightbox(url, caption, photosList, currentIdx){
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   CAMERA CAPTURE (Phase 16 + 17 — Generic)
+   CAMERA CAPTURE (Generic)
    ═══════════════════════════════════════════════════════════════════════ */
 let cameraStream = null;
 let cameraCaptured = null;
@@ -2789,7 +2824,7 @@ async function uploadLayerPhotos(layerName, itemId, itemRef){
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   BACKEND API CALLS (Generic)
+   BACKEND API CALLS
    ═══════════════════════════════════════════════════════════════════════ */
 async function saveSinglePhotoGeneric(layerName, itemId, photo){
   if(typeof google !== 'undefined' && google.script && google.script.run){
@@ -2843,7 +2878,7 @@ async function deleteLayerPhotoFromBackend(layerName, itemId, photoId){
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   EXPORT HOUSEHOLD PDF (Phase 15)
+   EXPORT HOUSEHOLD PDF
    ═══════════════════════════════════════════════════════════════════════ */
 async function exportHouseholdPDF(item){
   if(!window.jspdf){ toast('⚠ jsPDF ยังไม่โหลด', 'warn'); return; }
@@ -3043,7 +3078,7 @@ async function exportHouseholdPDF(item){
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   EXPORT MEDICAL UNIT PDF (Phase 17)
+   EXPORT MEDICAL UNIT PDF
    ═══════════════════════════════════════════════════════════════════════ */
 async function exportMedicalUnitPDF(item){
   if(!window.jspdf){ toast('⚠ jsPDF ยังไม่โหลด', 'warn'); return; }
@@ -3192,7 +3227,7 @@ async function exportMedicalUnitPDF(item){
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   MULTI-HOUSEHOLD PDF (Phase 16)
+   MULTI-HOUSEHOLD PDF
    ═══════════════════════════════════════════════════════════════════════ */
 async function openMultiHouseholdPDF(){
   if(!window.jspdf){ toast('⚠ jsPDF ยังไม่โหลด', 'warn'); return; }
@@ -3650,7 +3685,7 @@ function captureScreenshot(){
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   AI ASSISTANT + IOT PANEL
+   AI ASSISTANT + IOT
    ═══════════════════════════════════════════════════════════════════════ */
 function buildAIFab(){
   const btn = document.createElement('button');
@@ -3870,8 +3905,9 @@ async function boot(){
       }, 400);
     }, 500);
 
-    console.log('[GeoAI v17] Source:', S.source, '| Version:', CFG.VERSION);
-    console.log('[GeoAI v17] Payload meta:', S.payload.meta || Object.keys(S.payload.data).length + ' sheets');
+    console.log('[GeoAI v17.0.1] Source:', S.source, '| Version:', CFG.VERSION);
+    console.log('[GeoAI v17.0.1] Payload meta:', S.payload.meta || Object.keys(S.payload.data).length + ' sheets');
+    console.log('[GeoAI v17.0.1] maxZoom fix applied ✅');
 
   } catch(err){
     console.error(err);
